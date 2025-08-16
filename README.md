@@ -30,34 +30,55 @@ It allows creating users with multiple roles and filtering users by role.
 ```bash
 git clone https://github.com/your-username/your-repo.git
 cd your-repo
+```
 Step by Step
 
-Laravel
-  1. open powershell and go to your project
-  2. cd to the laravel-react-user-management
-  3. cd to Backend
-  4. composer install
-  5. Type on powershell cp .env.example .env
-  6. Open xampp and start apache and MySql
-  7. Type on powershell "php artisan serve"
-  8. Check if the host runs at http://localhost:8000
+Backend (Laravel)
+```powershell
+cd backend
+composer install
+cp .env.example .env
+php artisan key:generate
+```
+  1. Start XAMPP → enable Apache and MySQL.
+  2. Run Laravel server:
+```powershell
+php artisan serve
+```
+By default runs at: http://localhost:8000
+
+Frontend (React + Vite)
+```bash
+cd frontend
+npm install
+```
+Create a .env file inside /frontend:
+Paste this inside the .env file:
+```bash
+REACT_APP_API_URL=http://localhost:8000/api
+```
+Run the frontend:
+```bash
+npm run dev
+```
+By default its supposed to run at: http://localhost:3000
 
 Database
-  Option A
-    1. Download the rolemanagement.sql at the base folder
-    3. Go to phpmyadmin or through this link http://localhost/phpmyadmin/index.php?route=/server/databases
-    4. Add a new database and name it rolemanagement or any name
-    5. Select import and select the role_management_with_data.sql
-    6. If you want to only import the structure select the role_management_structure.sql
-  Option B
-    1. If you want to populate the database with random names roles and unique emails run "php artisan migrate:fresh --seed" on the powershell
-    2. You can customize on how many users are inserted by going to database->seeders->UserSeeders and replace the count to how many do you want
 
-React
-  1. Open Git Bash terminal and go to
-  2. Create a .env file at the frontend folder
-  3. Copy and paste this to the .env file "REACT_APP_API_URL=http://localhost:8000/api"
-  4. open your git bash then write go to the project cd xampp/htdocs/laravel-react-user-management/FrontEnd
-  5. type in your gitbash "npm install" to install all dependencies included in the file
-  6. next is npm run dev
-  7. it will start the react app at http://localhost:3000
+Option A: Import SQL
+1. Open phpMyAdmin.
+2. Create a database named rolemanagement.
+3. Import role_management_with_data.sql (sample data) or role_management_structure.sql (schema only).
+
+Option B: Laravel Migrations
+1. Open phpMyAdmin.
+2. Create a database named rolemanagement.
+3. Run in powershell
+```bash
+php artisan migrate:fresh --seed
+```
+You can adjust the number of seeded users in database/seeders/UserSeeder.php
+
+Running the Application
+Backend → http://localhost:8000
+Frontend → http://localhost:3000
