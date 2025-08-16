@@ -82,3 +82,10 @@ You can adjust the number of seeded users in database/seeders/UserSeeder.php
 Running the Application
 Backend → http://localhost:8000
 Frontend → http://localhost:3000
+
+## API Endpoints
+| Method | Endpoint              | Description                   |
+|--------|-----------------------|-------------------------------|
+| GET    | `/api/fetchUsers`     | Fetch all users with roles    |
+| GET    | `/api/users/{role}`   | Fetch users depending on role |
+| POST   | `/api/users`          | Create a new user             |
